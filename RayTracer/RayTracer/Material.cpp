@@ -1,7 +1,5 @@
 #include "Material.h"
 
-
-
 Material::Material(double specular, double diffuse, double krefl,
 	double krefr, double refrIndex, double kambient, vec4 color)
 	: specularComponent(specular), diffuseComponent(diffuse),
@@ -11,14 +9,39 @@ Material::Material(double specular, double diffuse, double krefl,
 {
 }
 
+Material::Material(const Material& material)
+	: specularComponent(material.specularComponent),
+	  diffuseComponent(material.diffuseComponent),
+	  reflectiveComponent(material.reflectiveComponent),
+	  refractiveComponent(material.refractiveComponent),
+	  refractionIndex(material.refractionIndex),
+	  ambientComponent(material.ambientComponent),
+	  color(material.color)
+{
+
+}
 
 Material::~Material()
 {
 }
 
+Material& Material::operator=(const Material& material)
+{
+	if (this != &material) {
+		this->ambientComponent = material.ambientComponent;
+		this->color = material.color;
+		this->diffuseComponent = material.diffuseComponent;
+		this->reflectiveComponent = material.reflectiveComponent;
+		this->refractiveComponent = material.refractiveComponent;
+		this->refractionIndex = material.refractionIndex;
+		this->specularComponent = material.specularComponent;
+	}
+	return *this;
+}
+
 double Material::getAmbientComponent()
 {
-	return ambientComponent
+	return ambientComponent;
 }
 
 void Material::setAmbientComponent(double ambientComponent)

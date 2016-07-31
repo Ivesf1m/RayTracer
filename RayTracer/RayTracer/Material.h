@@ -10,7 +10,11 @@ public:
 	Material(double specular = 0.0, double diffuse = 0.0, double krefl = 0.0, 
 		double krefr = 0.0, double refrIndex = 0.0, double kambient = 0.0,
 		vec4 color = vec4(0.0f, 0.0f, 0.0f, 0.0f));
+	Material(const Material& material);
 	~Material();
+
+	//Assignment operator
+	Material& operator=(const Material& material);
 
 	//Getters and setters
 	double getAmbientComponent();
